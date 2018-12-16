@@ -51,17 +51,25 @@ docker run -p 10.0.75.1:5000:5000 idrisfoughali/zoocontainer
 ## 2.7
 question: The name of my container is app, we can check if it's running or not by issuing a "docker stats" or "docker ps" command, since the name of our container is app, we can easily find it
 command:
+#well, we can use sever commands for that:
+#shows running containers
 docker stats
-#or
+#shows all containers even if stopped
+docker ps -a 
+#shows name and id of container
+docker ps -a --format "table {{.ID}}\t{{.Names}}"
+
+#or simply:
 docker ps
 
 command:
-docker container rename app zoocontainer
+docker container rename idrisfoughali/zoocontainer zoocontainer
+docker tag idrisfoughali/zoocontainer zoocontainer
 
 ## 2.8
 question: The OS from the container is a debian GNU/Linux 9
 output:
-docker run -it 2046ce5a5c52 /bin/bash
+docker run -it zoocontainer /bin/bash
 
 root@95c0a606b7da:/usr/src/app# cat /etc/*release
 PRETTY_NAME="Debian GNU/Linux 9 (stretch)"
