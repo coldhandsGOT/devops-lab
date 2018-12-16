@@ -9,6 +9,8 @@ docker build . -t webapp
 # Successfully built 953284872dd0
 
 docker run -p 10.0.75.1:5000:5000 webapp
+#or since it's only for testing purposes:
+docker run webapp
 
 ## 2.3
 question:
@@ -17,7 +19,7 @@ So we first get the IP address of the container/NAT IP address in my case, since
 
 command:
 ## we'll be using almost the same command as in 2.2, because the standard command isn't that useful when interacting with an API, in detached mode
-docker run -d -p 10.0.75.1:5000:5000 953284872dd0
+docker run -d -p 10.0.75.1:5000:5000 webapp
 
 ## 2.5
 question:
@@ -26,7 +28,7 @@ command:
 docker login --username idrisfoughali --password PASSWORD
 docker ps
 # container id : 2a4562890bdd 
-docker commit 2a4562890bdd nodejsdock
+docker commit webapp nodejsdock
 docker tag nodejsdock idrisfoughali/zoocontainer
 docker push idrisfoughali/zoocontainer
 
@@ -35,13 +37,15 @@ command:
 #list all images
 docker image ls
 #delete images by id, to be done for all existing images (different ids)
-docker rmi -f 2046ce5a5c52
+docker rmi -f <id of image>
+docker ps -a
+docker rm -f <id of container>
 
 question: we did not need to build the app from scratch, since it has already been built and uplodaed. So it was ready to be deployed.
 command:
 docker pull idrisfoughali/zoocontainer
 
-docker run -it -p 10.0.75.1:3000:3000 idrisfoughali/zoocontainer
+docker run -p 10.0.75.1:5000:5000 idrisfoughali/zoocontainer
 
 
 ## 2.7
