@@ -1,8 +1,6 @@
 version: '3'
 services:
   my-service:
-    ports:
-      - "10.0.75.1:5000:5000" 
     build:
       context: .
       dockerfile: dockerfile-alternate
@@ -15,20 +13,3 @@ services:
    
    
   
-   
-   # command: node /usr/src/webapp/index.js 
-
-    #DB SETTINGS
-
-    # SQL and document data store
- # db:
-###    image: mysql:5.7.24
-##    read_only: true
- #   tmpfs:
- #     - /tmp
-#      - /var/run/postgresql
- #   volumes:
- #     - db:/var/lib/postgresql/data
- #     - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
- #   ports:
- #     - "127.0.0.1:5432:5432" # you can override it via docker-compose.override.yml
