@@ -4,12 +4,17 @@ services:
     build:
       context: .
       dockerfile: dockerfile-alternate
+
     volumes:
       -  /usr/src/webapp/
     ports:
-   #   - "5000:5000"
+      - "5000:5000"
       - "10.0.75.1:5000:5000" 
-    
+      - "3306:3307"
    
-   
-  
+    environment:
+      MYSQL_HOST: host.docker.internal
+      MYSQL_USER: root
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: nodejs
+     

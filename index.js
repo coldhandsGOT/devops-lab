@@ -65,7 +65,7 @@ app.use(function(req, res, next) {
 //all atributes are mandatory for the object creation
 app.post('/animals', function(req,res)
 {
-	var query = "INSERT INTO ANIMALS (";
+	var query = "INSERT INTO animals (";
 	var arrayKey={};
 	var arrayAtr={};
 
@@ -125,7 +125,7 @@ app.get('/animals', function(req,res)
 			query = query.replace("*", arrayKeys);
 		}
 
-	query += "from animals";
+	query += "FROM animals";
 
 //sort
 		if ("sort" in req.query) {
@@ -221,7 +221,7 @@ res.send(JSON.stringify("Delete"));
 
 app.delete('/animals/:id', function(req, res) {
 var id = req.params.id;
-var query = "DELETE FROM ANIMALS WHERE id=" + id;
+var query = "DELETE FROM animals WHERE id=" + id;
 db.query(query, function(err, result, fields) {
 if (err) throw err;
 res.send(JSON.stringify("Delete"));
@@ -236,7 +236,7 @@ res.send(JSON.stringify("Delete"));
 app.put('/animals/:id(\\d+)', function(req, res) 
 {
 	var id = req.params.id;
-	var query = "UPDATE animals set  ";
+	var query = "UPDATE animals SET  ";
 	var arrayKey={};
 	var arrayAtr={};
 
@@ -1308,5 +1308,5 @@ app.listen(5000, function()
 		if (err) throw err;
 	console.log('Connection to database successful!!!');
 	});
-	console.log("listening on port 3000!")
+	console.log("listening on port 5000!")
 });
