@@ -94,5 +94,54 @@ docker-compose build
 
 ## 3.4
 command:
+docker-compose run -d --restart:always
 command:
+docker-compose logs my-service
 
+
+## 3.6
+In order to achieve the dockerization of the app, we need to first build the images and then call them in our docker-composer.yml
+
+Example:
+
+version: '3.1'
+services:
+  app:
+    image: idrisfoughali/zoocontainer
+    dockerfile: dockerfile-alternate
+    container_name: webapp
+    volumes:
+      - ./:/usr/src/webapp/
+    ports:
+      - 5000:5000 
+    depends_on:
+      - mysqldb
+    networks:
+      - app-network
+
+
+  # MySql at default port
+  mysqldb:
+    image: mysql/mysql-server
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    #for persistant data
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    environment:
+    # the password that will be set for the MySQL root superuser account
+      - MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE: nodejs
+      - SERVICE_TAGS: dev
+      - SERVICE_NAME: mysql
+      networks:
+      - app-network
+
+#Docker Networks
+networks: 
+app-network:
+driver: bridge   
