@@ -29,7 +29,7 @@ docker rm ce858af6b38df13a7a0fb18ddd0738d1c1182f348940ddae9103ba5274ec86a2
 question:
 command:
 		
-docker login --username idrisfoughali --password Coldhand8931172
+docker login --username idrisfoughali --password PASSWORD
 docker ps
 # container id : 2a4562890bdd 
 docker commit 2a4562890bdd nodejsdock
