@@ -85,6 +85,9 @@ root@95c0a606b7da:/usr/src/app#
 
 ## 3.1
 command:
+docker-compose build
+ docker run ae5e0ff9fa7a
+
 
 ## 3.4
 command:
