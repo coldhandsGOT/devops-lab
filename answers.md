@@ -1,6 +1,10 @@
 # Answers
+# THIS LAB WAS DONE IN DUO DUE TO MAJOR INCOMPATIBILITY ISSUES ON BOTH REDHAT AND LINUX, BUT ALSO SOME TRIVIAl BUGS ON WINDOWS
 
-Lastname: Foughali
+Lastname: Duchesne
+Firstname: Anastasia
+
+Lastname: Foughali 
 Firstname: Idris
 
 ## 2.2
@@ -47,7 +51,6 @@ docker pull idrisfoughali/zoocontainer
 
 docker run -p 10.0.75.1:5000:5000 idrisfoughali/zoocontainer
 
-
 ## 2.7
 question: The name of my container is app, we can check if it's running or not by issuing a "docker stats" or "docker ps" command, since the name of our container is app, we can easily find it
 command:
@@ -69,7 +72,7 @@ docker tag idrisfoughali/zoocontainer zoocontainer
 ## 2.8
 question: The OS from the container is a debian GNU/Linux 9
 output:
-docker run -it zoocontainer /bin/bash
+docker run -it 95c0a606b7da /bin/bash
 
 root@95c0a606b7da:/usr/src/app# cat /etc/*release
 PRETTY_NAME="Debian GNU/Linux 9 (stretch)"
@@ -92,3 +95,4 @@ docker-compose build
 ## 3.4
 command:
 command:
+

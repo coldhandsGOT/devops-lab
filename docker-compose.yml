@@ -1,20 +1,44 @@
-version: '3'
+version: '3.1'
 services:
-  my-service:
-    build:
-      context: .
-      dockerfile: dockerfile-alternate
+ 	webserver:
+ 		  image: idrisfoughali/zoocontainer
+	      dockerfile: dockerfile-alternate
+   		  container_name: webserver
 
-    volumes:
-      -  /usr/src/webapp/
-    ports:
-      - "5000:5000"
-      - "10.0.75.1:5000:5000" 
-      - "3306:3307"
-   
-    environment:
-      MYSQL_HOST: host.docker.internal
-      MYSQL_USER: root
-      MYSQL_PASSWORD: test
-      MYSQL_DATABASE: nodejs
-     
+	    volumes:
+	      -  /usr/src/webapp/
+	    ports:
+	      - 5000:5000 
+	    depends_on:
+	      - mysqldb
+	    networks:
+     	  - app-network
+	   
+	  
+# MySql at default port
+    mysqldb:
+	    image: mysql/mysql-server
+	    container_name: db
+   		restart: unless-stopped
+   		tty: true
+   		ports:
+	      - "3307:3306"
+	    #for persistant data
+	    volumes:
+        - mysql-db:/var/lib/mysql
+
+	    environment:
+	    # the password that will be set for the MySQL root superuser account
+	      - MYSQL_ROOT_PASSWORD: root
+ 		  - MYSQL_DATABASE: nodejs
+ 		  - SERVICE_TAGS: dev
+     	  - SERVICE_NAME: mysql
+     	networks:
+     		- app-network
+
+#Docker Networks
+networks: 
+	app-network:
+		driver: bridge
+	   
+	    
