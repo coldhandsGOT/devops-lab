@@ -9,7 +9,8 @@ docker build . -t app
 # Successfully built 953284872dd0
 
 docker run -d --name app -p 10.0.75.1:4000:4000 953284872dd0
-
+#or
+docker run -d --expose 4000 2046ce5a5c52
 
 ## 2.3
 question:
@@ -37,23 +38,45 @@ docker push idrisfoughali/zoocontainer
 
 ## 2.6
 command:
+#list all images
+docker image ls
+#delete images by id, to be done for all existing images (different ids)
+docker rmi -f 2046ce5a5c52
 
-
-question:
+question: we did not need to build the app from scratch, since it has already been built and uplodaed. So it was ready to be deployed.
 command:
+docker pull idrisfoughali/zoocontainer
+docker run -d --name app -p 10.0.75.1:4000:4000 2046ce5a5c52
+
 
 command:
 
 ## 2.7
-question:
-question:
+question: The name of my container is app, we can check if it's running or not by issuing a "docker stats" or "docker ps" command, since the name of our container is app, we can easily find it
 command:
+docker stats
+#or
+docker ps
 
 command:
+docker container rename app zoocontainer
 
 ## 2.8
-question:
+question: The OS from the container is a debian GNU/Linux 9
 output:
+docker run -it 2046ce5a5c52 /bin/bash
+
+root@95c0a606b7da:/usr/src/app# cat /etc/*release
+PRETTY_NAME="Debian GNU/Linux 9 (stretch)"
+NAME="Debian GNU/Linux"
+VERSION_ID="9"
+VERSION="9 (stretch)"
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+root@95c0a606b7da:/usr/src/app#
+
 
 ## 3.1
 command:
