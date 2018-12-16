@@ -5,25 +5,19 @@ Firstname: Idris
 
 ## 2.2
 command:
-docker build . -t app
+docker build . -t webapp
 # Successfully built 953284872dd0
 
-docker run -d --name app -p 10.0.75.1:4000:4000 953284872dd0
-#or
-docker run -d --expose 4000 2046ce5a5c52
+docker run -p 10.0.75.1:5000:5000 webapp
 
 ## 2.3
 question:
-The connection fails because not only we don't have the correct ip address, but also because the ports arent open yet in our dockerfile (Expose 3000, 3306)
+The connection is supposed to fail, but since I had already configured my dockerfile to contain the Expose ports 5000 for my api and 3306 for my database
 So we first get the IP address of the container/NAT IP address in my case, since I'm on windows, then we use it for postman.
 
 command:
-## we'll be using the same command as in 2.2, because the standard command isn't that useful
-docker run -d --name app -p 10.0.75.1:4000:4000 953284872dd0
-
-#if container already exists: 
-docker rm ce858af6b38df13a7a0fb18ddd0738d1c1182f348940ddae9103ba5274ec86a2  
-#then we reinitiate the docker run command
+## we'll be using almost the same command as in 2.2, because the standard command isn't that useful when interacting with an API, in detached mode
+docker run -d -p 10.0.75.1:5000:5000 953284872dd0
 
 ## 2.5
 question:
@@ -46,10 +40,9 @@ docker rmi -f 2046ce5a5c52
 question: we did not need to build the app from scratch, since it has already been built and uplodaed. So it was ready to be deployed.
 command:
 docker pull idrisfoughali/zoocontainer
-docker run -d --name app -p 10.0.75.1:4000:4000 2046ce5a5c52
 
+docker run -it -p 10.0.75.1:3000:3000 idrisfoughali/zoocontainer
 
-command:
 
 ## 2.7
 question: The name of my container is app, we can check if it's running or not by issuing a "docker stats" or "docker ps" command, since the name of our container is app, we can easily find it
